@@ -169,14 +169,17 @@ img {
 }
 
 .logo-img {
-    height: 60px;
-    /* Adjust based on actual aspect ratio */
+    height: 85px;
+    /* Increased size */
     width: auto;
-    transition: transform var(--transition-normal);
+    transition: transform var(--transition-normal), filter var(--transition-normal);
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
+    /* Subtle white glow for contrast */
 }
 
 .logo-link:hover .logo-img {
     transform: scale(1.05);
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
 }
 
 .nav-links {
@@ -631,8 +634,10 @@ img {
 }
 
 .footer-logo {
-    height: 50px;
+    height: 75px;
     margin-bottom: 1rem;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
+    /* Contrast for dark footer */
 }
 
 .footer-brand p {
