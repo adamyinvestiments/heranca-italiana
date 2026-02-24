@@ -497,15 +497,38 @@ img {
     margin-top: 0.25rem;
 }
 
-.rounded-image {
-    border-radius: var(--border-radius);
+.ancestral-img {
     width: 100%;
     height: auto;
-    border: 1px solid var(--color-glass-border);
+    border-radius: 12px;
+    /* Smooth rounded corners */
+    border: 2px solid var(--color-accent-gold);
+    /* Golden border for luxury feel */
+    box-shadow: 0 15px 40px rgba(3, 10, 24, 0.95), 0 0 15px rgba(212, 175, 55, 0.15);
+    /* Deep dark blue shadow + subtle gold glow */
+    display: block;
 }
 
-.shadow {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+.image-wrapper-vignette {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    /* Ensure vignette doesn't bleed out */
+}
+
+/* Vignette Effect */
+.image-wrapper-vignette::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    box-shadow: inset 0 0 80px rgba(3, 10, 24, 0.9);
+    /* Inset dark blue shadow for vignette */
+    pointer-events: none;
+    /* Let clicks pass through if needed */
 }
 
 .hover-zoom {
