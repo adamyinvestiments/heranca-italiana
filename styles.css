@@ -156,10 +156,12 @@ img {
     z-index: 1000;
     padding: 1rem 0;
     transition: all var(--transition-normal);
-    background: var(--color-glass-bg);
+    background: rgba(255, 255, 255, 0.95);
+    /* White background to blend logo-1.jpg */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--color-glass-border);
+    border-bottom: 1px solid #E5E7EB;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .navbar-container {
@@ -192,7 +194,8 @@ img {
 .nav-link {
     font-size: 0.95rem;
     font-weight: 500;
-    color: var(--color-text);
+    color: var(--color-primary-dark);
+    /* Dark text for white background */
     transition: color var(--transition-fast);
     position: relative;
 }
@@ -220,7 +223,8 @@ img {
     display: none;
     background: none;
     border: none;
-    color: var(--color-text);
+    color: var(--color-primary-dark);
+    /* Dark hamburger menu for white background */
     font-size: 1.5rem;
     cursor: pointer;
 }
@@ -646,9 +650,11 @@ img {
    12. Footer
    ========================================================================= */
 .footer {
-    background-color: #01040a;
+    background-color: #FFFFFF;
+    /* White to match logo-1.jpg */
     padding-top: var(--space-xl);
-    border-top: 1px solid var(--color-glass-border);
+    border-top: 1px solid #E5E7EB;
+    /* Light grey border */
 }
 
 .footer-container {
@@ -702,10 +708,10 @@ img {
 }
 
 .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid #E5E7EB;
     padding: 1.5rem 0;
     text-align: center;
-    color: var(--color-text-muted);
+    color: var(--color-primary-light);
     font-size: 0.875rem;
 }
 
