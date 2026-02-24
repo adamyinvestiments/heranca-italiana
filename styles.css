@@ -154,38 +154,34 @@ img {
     left: 0;
     width: 100%;
     z-index: 1000;
-    height: 60px;
+    padding: 1rem 0;
     transition: all var(--transition-normal);
-    background: #FFFFFF;
-    border-bottom: 1px solid #E5E7EB;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    background: var(--color-glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-glass-border);
 }
 
 .navbar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100%;
-}
-
-.logo-link {
-    display: block;
-    align-self: flex-start;
-    background: #FFFFFF;
-    padding: 5px 20px 20px 20px;
-    border-radius: 0 0 16px 16px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    transition: transform var(--transition-fast);
-}
-
-.logo-link:hover {
-    transform: translateY(4px);
 }
 
 .logo-img {
-    height: 100px;
+    height: 85px;
+    /* Increased size */
     width: auto;
-    display: block;
+    transition: transform var(--transition-normal), filter var(--transition-normal);
+}
+
+.logo-glow {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4)) drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+}
+
+.logo-link:hover .logo-img.logo-glow {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
 }
 
 .nav-links {
@@ -196,8 +192,7 @@ img {
 .nav-link {
     font-size: 0.95rem;
     font-weight: 500;
-    color: var(--color-primary-dark);
-    /* Dark text for white background */
+    color: var(--color-text);
     transition: color var(--transition-fast);
     position: relative;
 }
@@ -225,8 +220,7 @@ img {
     display: none;
     background: none;
     border: none;
-    color: var(--color-primary-dark);
-    /* Dark hamburger menu for white background */
+    color: var(--color-text);
     font-size: 1.5rem;
     cursor: pointer;
 }
@@ -652,11 +646,9 @@ img {
    12. Footer
    ========================================================================= */
 .footer {
-    background-color: #FFFFFF;
-    /* White to match logo-1.jpg */
+    background-color: #01040a;
     padding-top: var(--space-xl);
-    border-top: 1px solid #E5E7EB;
-    /* Light grey border */
+    border-top: 1px solid var(--color-glass-border);
 }
 
 .footer-container {
@@ -710,10 +702,10 @@ img {
 }
 
 .footer-bottom {
-    border-top: 1px solid #E5E7EB;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     padding: 1.5rem 0;
     text-align: center;
-    color: var(--color-primary-light);
+    color: var(--color-text-muted);
     font-size: 0.875rem;
 }
 
