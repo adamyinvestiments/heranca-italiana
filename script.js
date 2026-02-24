@@ -69,4 +69,106 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Surname Tooltip Logic
+    const tooltip = document.getElementById('surname-tooltip');
+    const tooltipTitle = tooltip.querySelector('.tooltip-title');
+    const tooltipDesc = tooltip.querySelector('.tooltip-desc');
+    const surnameBtns = document.querySelectorAll('.surname-btn');
+
+    // Track if device primarily uses touch (to differentiate click vs hover behavior)
+    let isTouchDevice = false;
+    window.addEventListener('touchstart', () => { isTouchDevice = true; }, { once: true });
+
+    let activeTooltipBtn = null; // Track the button that currently opened the tooltip (for mobile toggle)
+
+    function showTooltip(btn, x, y) {
+        tooltipTitle.textContent = btn.getAttribute('data-title');
+        tooltipDesc.textContent = btn.getAttribute('data-desc');
+        tooltip.classList.add('active');
+        tooltip.setAttribute('aria-hidden', 'false');
+        positionTooltip(x, y);
+    }
+
+    function hideTooltip() {
+        tooltip.classList.remove('active');
+        tooltip.setAttribute('aria-hidden', 'true');
+        activeTooltipBtn = null;
+    }
+
+    function positionTooltip(mouseX, mouseY) {
+        // Offset from cursor/element
+        const offset = 15;
+        let finalX = mouseX + offset;
+        let finalY = mouseY + offset;
+
+        const tooltipRect = tooltip.getBoundingClientRect();
+
+        // Prevent overflowing right edge
+        if (finalX + tooltipRect.width > window.innerWidth) {
+            finalX = window.innerWidth - tooltipRect.width - offset;
+        }
+
+        // Prevent overflowing bottom edge
+        if (finalY + tooltipRect.height > window.innerHeight) {
+            finalY = mouseY - tooltipRect.height - offset;
+        }
+
+        tooltip.style.left = `${finalX}px`;
+        tooltip.style.top = `${finalY}px`;
+    }
+
+    surnameBtns.forEach(btn => {
+        // Desktop Hover (follows mouse)
+        btn.addEventListener('mouseenter', (e) => {
+            if (isTouchDevice) return;
+            showTooltip(btn, e.clientX, e.clientY);
+        });
+
+        btn.addEventListener('mousemove', (e) => {
+            if (isTouchDevice) return;
+            positionTooltip(e.clientX, e.clientY);
+        });
+
+        btn.addEventListener('mouseleave', () => {
+            if (isTouchDevice) return;
+            hideTooltip();
+        });
+
+        // Accessibility (Keyboard Focus)
+        btn.addEventListener('focus', (e) => {
+            const rect = btn.getBoundingClientRect();
+            // Position slightly below and right of the button for keyboard users
+            showTooltip(btn, rect.left + (rect.width / 2), rect.bottom);
+        });
+
+        btn.addEventListener('blur', () => {
+            // Only hide if we aren't clicking it (avoids conflict with click toggle)
+            if (!isTouchDevice) hideTooltip();
+        });
+
+        // Mobile / Touch Click Toggle
+        btn.addEventListener('click', (e) => {
+            if (!isTouchDevice) return; // Desktop uses hover
+            e.stopPropagation(); // Prevent document click from immediately closing it
+
+            if (activeTooltipBtn === btn) {
+                // Tapping the same button twice closes it
+                hideTooltip();
+            } else {
+                // Tapping a new button opens it
+                const rect = btn.getBoundingClientRect();
+                showTooltip(btn, rect.left + (rect.width / 2), rect.bottom);
+                activeTooltipBtn = btn;
+            }
+        });
+    });
+
+    // Close tooltip when touching outside (Mobile)
+    document.addEventListener('click', (e) => {
+        if (isTouchDevice && tooltip.classList.contains('active')) {
+            hideTooltip();
+        }
+    });
+
 });
