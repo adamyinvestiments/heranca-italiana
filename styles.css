@@ -173,13 +173,15 @@ img {
     /* Increased size */
     width: auto;
     transition: transform var(--transition-normal), filter var(--transition-normal);
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
-    /* Subtle white glow for contrast */
 }
 
-.logo-link:hover .logo-img {
+.logo-glow {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4)) drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+}
+
+.logo-link:hover .logo-img.logo-glow {
     transform: scale(1.05);
-    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
 }
 
 .nav-links {
