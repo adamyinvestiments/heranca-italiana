@@ -154,12 +154,9 @@ img {
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 1rem 0;
+    height: 60px;
     transition: all var(--transition-normal);
-    background: rgba(255, 255, 255, 0.95);
-    /* White background to blend logo-1.jpg */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: #FFFFFF;
     border-bottom: 1px solid #E5E7EB;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
@@ -168,22 +165,27 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 100%;
+}
+
+.logo-link {
+    display: block;
+    align-self: flex-start;
+    background: #FFFFFF;
+    padding: 5px 20px 20px 20px;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform var(--transition-fast);
+}
+
+.logo-link:hover {
+    transform: translateY(4px);
 }
 
 .logo-img {
-    height: 85px;
-    /* Increased size */
+    height: 100px;
     width: auto;
-    transition: transform var(--transition-normal), filter var(--transition-normal);
-}
-
-.logo-glow {
-    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4)) drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
-}
-
-.logo-link:hover .logo-img.logo-glow {
-    transform: scale(1.05);
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+    display: block;
 }
 
 .nav-links {
